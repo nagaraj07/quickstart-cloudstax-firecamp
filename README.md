@@ -1,1 +1,2 @@
-# quickstart-quickstart-cloudstax-redis
+# quickstart-quickstart-cloudstax
+# Common-template
