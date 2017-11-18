@@ -1,0 +1,26 @@
+[
+  {
+    "ParameterKey": "ClusterName",
+    "ParameterValue": "cluster1"
+  },
+  {
+    "ParameterKey": "AvailabilityZones",
+    "ParameterValue": "$[alfred_genaz_2]"
+  },
+  {
+    "ParameterKey": "NumberOfAZs",
+    "ParameterValue": "2"
+  },
+  {
+    "ParameterKey": "NumberOfNodes",
+    "ParameterValue": "2"
+  },
+  {
+    "ParameterKey": "KeyPairName",
+    "ParameterValue": "cikey"
+  },
+  {
+    "ParameterKey": "NodeInstanceType",
+    "ParameterValue": "t2.micro"
+  }
+]
