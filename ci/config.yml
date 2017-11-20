@@ -1,9 +1,7 @@
 global:
-  qsname: quickstart-cloudstax
-  owner: junius@cloudstax.io
-  #s3bucket: cloudstax
   marketplace-ami: false
-  reporting: false
+  owner: quickstart-eng@amazon.com
+  qsname: quickstart-cloudstax-firecamp
   regions:
     - ap-northeast-1
     - ap-northeast-2
@@ -20,7 +18,7 @@ global:
     - us-west-1
     - us-west-2
 tests:
-  cloudstax-3-AZ:
+  quickstart-3-AZ:
     template_file:  firecamp-master.template
     parameter_input: master.json
     regions:
@@ -29,7 +27,7 @@ tests:
       - us-east-1
       - us-east-2
       - us-west-2
-  2-AZ:
+  quickstart-2-AZ:
     template_file:  firecamp-master.template
     parameter_input: master-2AZ.json
     regions:
