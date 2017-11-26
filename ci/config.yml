@@ -1,7 +1,7 @@
 global:
-  marketplace-ami: false
-  owner: quickstart-eng@amazon.com
   qsname: quickstart-cloudstax-firecamp
+  owner: quickstart-eng@amazon.com
+  reporting: true
   regions:
     - ap-northeast-1
     - ap-northeast-2
