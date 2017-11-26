@@ -254,7 +254,7 @@
         },
         "Path": "/",
         "Policies": [{
-          "PolicyName": "LambdaExecRole",
+          "PolicyName": "LambdaExecPolicy",
           "PolicyDocument": {
             "Statement": [
               {
