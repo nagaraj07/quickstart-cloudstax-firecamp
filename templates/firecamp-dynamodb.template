@@ -1,0 +1,71 @@
+{
+  "AWSTemplateFormatVersion":"2010-09-09",
+  "Description": "This template creates the DynamoDB tables for the FireCamp cluster.",
+  "Parameters":{
+    "ClusterName":{
+      "Type":"String",
+      "Description":"Name of the cluster.",
+      "Default":"default",
+      "MinLength": "1",
+      "MaxLength": "255",
+      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9-]*",
+      "ConstraintDescription": "Cluster name must start with a letter and can only contain letters, numbers, or hyphens."
+    },
+    "ReadCapacityUnits":{
+      "Type":"Number",
+      "Default":"25",
+      "Description":"The  maximum number of strongly consistent reads consumed per second."
+    },
+    "WriteCapacityUnits":{
+      "Type":"Number",
+      "Default":"25",
+      "Description":"The  maximum number of writes consumed per second."
+    }
+  },
+  "Resources" : {
+    "FireCampTable" : {
+      "Type" : "AWS::DynamoDB::Table",
+      "Properties" : {
+        "TableName" : {
+          "Fn::Join": [
+            "-",
+            [
+              {
+                "Ref": "ClusterName"
+              },
+              "firecamp-table"
+            ]
+          ]
+        },
+        "AttributeDefinitions" : [
+          {
+            "AttributeName" : "PartitionKey",
+            "AttributeType" : "S"
+          },
+          {
+            "AttributeName" : "SortKey",
+            "AttributeType" : "S"
+          }
+        ],
+        "KeySchema" : [
+          {
+            "AttributeName" : "PartitionKey",
+            "KeyType" : "HASH"
+          },
+          {
+            "AttributeName" : "SortKey",
+            "KeyType" : "RANGE"
+          }
+        ],
+        "ProvisionedThroughput" : {
+          "ReadCapacityUnits" : {
+            "Ref": "ReadCapacityUnits"
+          },
+          "WriteCapacityUnits" : {
+            "Ref": "WriteCapacityUnits"
+          }
+        }
+      }
+    }
+  }
+}
