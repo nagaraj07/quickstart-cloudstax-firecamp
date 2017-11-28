@@ -77,8 +77,8 @@
       "ConstraintDescription": "Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).",
       "Description": "S3 bucket name for the Quick Start assets. Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-)."
     },
-    "QSCloudStaxS3KeyPrefix": {
-      "Default": "firecamp/releases/latest/",
+    "QSS3KeyPrefix": {
+      "Default": "cloudstax/firecamp/latest/",
       "Type": "String"
     }
   },
@@ -90,49 +90,49 @@
     },
     "AWSAMIRegionMap": {
       "AMI": {
-        "AMZNLINUXHVM": "amzn-ami-hvm-2017.03.0.20170417-x86_64-gp2"
+        "AMZNLINUXHVM": "amzn-ami-hvm-2017.09.1.20171120-x86_64-gp2"
       },
       "ap-northeast-1": {
-        "AMZNLINUXHVM": "ami-923d12f5"
+        "AMZNLINUXHVM": "ami-da9e2cbc"
       },
       "ap-northeast-2": {
-        "AMZNLINUXHVM": "ami-9d15c7f3"
+        "AMZNLINUXHVM": "ami-1196317f"
       },
       "ap-south-1": {
-        "AMZNLINUXHVM": "ami-52c7b43d"
+        "AMZNLINUXHVM": "ami-d5c18eba"
       },
       "ap-southeast-1": {
-        "AMZNLINUXHVM": "ami-fc5ae39f"
+        "AMZNLINUXHVM": "ami-c63d6aa5"
       },
       "ap-southeast-2": {
-        "AMZNLINUXHVM": "ami-162c2575"
+        "AMZNLINUXHVM": "ami-ff4ea59d"
       },
       "ca-central-1": {
-        "AMZNLINUXHVM": "ami-0bd66a6f"
+        "AMZNLINUXHVM": "ami-d29e25b6"
       },
       "eu-central-1": {
-        "AMZNLINUXHVM": "ami-b968bad6"
+        "AMZNLINUXHVM": "ami-bf2ba8d0"
       },
       "eu-west-1": {
-        "AMZNLINUXHVM": "ami-01ccc867"
+        "AMZNLINUXHVM": "ami-1a962263"
       },
       "eu-west-2": {
-        "AMZNLINUXHVM": "ami-b6daced2"
+        "AMZNLINUXHVM": "ami-e7d6c983"
       },
       "sa-east-1": {
-        "AMZNLINUXHVM": "ami-37cfad5b"
+        "AMZNLINUXHVM": "ami-286f2a44"
       },
       "us-east-1": {
-        "AMZNLINUXHVM": "ami-c58c1dd3"
+        "AMZNLINUXHVM": "ami-55ef662f"
       },
       "us-east-2": {
-        "AMZNLINUXHVM": "ami-4191b524"
+        "AMZNLINUXHVM": "ami-15e9c770"
       },
       "us-west-1": {
-        "AMZNLINUXHVM": "ami-7a85a01a"
+        "AMZNLINUXHVM": "ami-a51f27c5"
       },
       "us-west-2": {
-        "AMZNLINUXHVM": "ami-4836a428"
+        "AMZNLINUXHVM": "ami-bf4193c7"
       }
     }
   },
@@ -262,7 +262,7 @@
                 },
                 "/",
                 {
-                  "Ref": "QSCloudStaxS3KeyPrefix"
+                  "Ref": "QSS3KeyPrefix"
                 },
                 "scripts/init.sh\n",
                 "  if [ \"$?\" = \"0\" ]; then\n",
