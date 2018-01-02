@@ -291,8 +291,8 @@
     },
     "Release": {
       "Type": "String",
-      "Default": "0.9.1",
-      "AllowedValues": [ "0.9.1", "0.9" ],
+      "Default": "0.9.2",
+      "AllowedValues": [ "0.9.2", "0.9.1" ],
       "Description": "The FireCamp release version"
     },
     "QSS3BucketName": {
@@ -574,6 +574,14 @@
             "IpProtocol": "tcp",
             "FromPort": "9042",
             "ToPort": "9042",
+            "SourceSecurityGroupId": {
+              "Ref": "AppAccessSecurityGroup"
+            }
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": "7199",
+            "ToPort": "7199",
             "SourceSecurityGroupId": {
               "Ref": "AppAccessSecurityGroup"
             }
