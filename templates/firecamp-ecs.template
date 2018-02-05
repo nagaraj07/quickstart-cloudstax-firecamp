@@ -96,6 +96,7 @@
           "Fn::Join":[
             "-",
             [
+              "firecamp",
               {
                 "Ref": "ClusterName"
               },
@@ -103,7 +104,7 @@
             ]
           ]
         },
-        "RetentionInDays": "30"
+        "RetentionInDays": "120"
       }
     },
     "ManageServerTaskdefinition":{

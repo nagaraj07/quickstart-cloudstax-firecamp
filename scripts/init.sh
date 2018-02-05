@@ -6,6 +6,8 @@ containerPlatform=$3
 containerPlatformRole=$4
 azs=$5
 
+org="cloudstax/"
+
 if [ "$version" = "" -o "$clusterName" = "" -o "$azs" = "" ]; then
   echo "version $version, clusterName $clusterName and azs $azs should not be empty"
   exit 1
@@ -25,7 +27,7 @@ echo "init version $version, cluster $clusterName, container platform $container
 
 # 1. tune the system configs.
 # set never for THP (Transparent Huge Pages), as THP might impact the performance for some services
-# such as MongoDB and Reddis. Could set to madvise if some service really benefits from madvise.
+# such as MongoDB and Redis. Could set to madvise if some service really benefits from madvise.
 # https://www.kernel.org/doc/Documentation/vm/transhuge.txt
 echo never | sudo tee /sys/kernel/mm/transparent_hugepage/enabled
 
@@ -54,14 +56,18 @@ sysctl -w vm.overcommit_memory=1
 # 2. install docker.
 yum install -y docker
 
+# 3. Create the firecamp data directory.
+# The volume plugin will write the service member to the data directory, so the log plugin
+# could know the target service member for the log stream.
+mkdir -p /var/lib/firecamp
 
-# 3. Container platform specific initialization.
+# 4. Container platform specific initialization.
 if [ "$containerPlatform" = "ecs" ]; then
   # Kafka uses a very large number of files, increase the file descriptor count.
   # AWS AMI sets the ulimit for docker daemon, OPTIONS=\"--default-ulimit nofile=1024:4096\".
   # The container inherits the docker daemon ulimit.
   # The docker daemon config file is different on different Linux. AWS AMI is /etc/sysconfig/docker.
-  # Ubuntu is /etc/init/docker.conf
+  # Ubuntu is /etc/init/docker.conf, DOCKER_OPTS
   sed -i "s/OPTIONS=\"--default-ulimit.*/OPTIONS=\"--default-ulimit nofile=100000:100000 --default-ulimit nproc=64000:64000\"/g" /etc/sysconfig/docker
 
   service docker start
@@ -95,26 +101,26 @@ if [ "$containerPlatform" = "ecs" ]; then
     --env=ECS_DATADIR=/data/ \
     --env=ECS_ENABLE_TASK_IAM_ROLE=true \
     --env=ECS_ENABLE_TASK_IAM_ROLE_NETWORK_HOST=true \
-    cloudstax/firecamp-amazon-ecs-agent:latest
+    ${org}firecamp-amazon-ecs-agent:latest
 
   # wait for ecs agent to be ready
   sleep 6
 
   # install firecamp docker volume plugin
   mkdir -p /var/log/firecamp
-  docker plugin install --grant-all-permissions cloudstax/firecamp-volume:$version
+  docker plugin install --grant-all-permissions ${org}firecamp-volume:$version
 
   # check if volume plugin is enabled
-  enabled=$(docker plugin inspect cloudstax/firecamp-volume:$version | grep Enabled | grep true)
+  enabled=$(docker plugin inspect ${org}firecamp-volume:$version | grep Enabled | grep true)
   if [ -z "$enabled" ]; then
     # volume plugin not enabled. this may happen if ecs agent is not ready. wait some time and try to enable it again.
     sleep 10
-    docker plugin enable cloudstax/firecamp-volume:$version
+    docker plugin enable ${org}firecamp-volume:$version
   fi
 
-  # TODO enable log driver after upgrade to 17.05/06
-  # install firecamp docker log driver
-  # docker plugin install cloudstax/firecamp-logs
+  # install firecamp docker log plugin
+  docker plugin install --grant-all-permissions ${org}firecamp-log:$version CLUSTER="$clusterName"
+
 fi
 
 if [ "$containerPlatform" = "swarm" ]; then
@@ -180,12 +186,11 @@ if [ "$containerPlatform" = "swarm" ]; then
     # worker node, install the firecamp plugin
     # install firecamp docker volume plugin
     mkdir -p /var/log/firecamp
-    docker plugin install --grant-all-permissions cloudstax/firecamp-volume:$version PLATFORM="swarm" CLUSTER="$clusterName"
-
-    # TODO enable log driver after upgrade to 17.05/06
-    # install firecamp docker log driver
-    # docker plugin install cloudstax/firecamp-logs
+    docker plugin install --grant-all-permissions ${org}firecamp-volume:$version PLATFORM="swarm" CLUSTER="$clusterName"
   fi
+
+  # install firecamp docker log plugin on worker and manage nodes
+  docker plugin install --grant-all-permissions ${org}firecamp-log:$version CLUSTER="$clusterName"
 fi
 
 
