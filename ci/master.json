@@ -1,7 +1,7 @@
 [
   {
     "ParameterKey": "ClusterName",
-    "ParameterValue": "$[gen_uuid]"
+    "ParameterValue": "$[alfred_gen_uuid]"
   },
   {
     "ParameterKey": "AvailabilityZones",
