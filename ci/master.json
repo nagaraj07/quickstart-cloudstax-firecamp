@@ -1,7 +1,7 @@
 [
   {
     "ParameterKey": "ClusterName",
-    "ParameterValue": "$[alfred_gen_uuid]"
+    "ParameterValue": "alfred-develop-$[alfred_genuuid]"
   },
   {
     "ParameterKey": "AvailabilityZones",
@@ -21,7 +21,7 @@
   },
   {
     "ParameterKey": "RemoteAccessCIDR",
-    "ParameterValue": "0.0.0.0/0"
+    "ParameterValue": "10.0.0.0/16"
   },
   {
     "ParameterKey": "NodeInstanceType",
