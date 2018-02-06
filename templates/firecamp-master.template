@@ -760,36 +760,50 @@
           "SubnetIDs": {
             "Fn::If": [
               "2AZCondition",
-              "Fn::Join": [
-                ",",
-                [
-                  "Fn::GetAtt": [
-                    "VPCStack",
-                    "Outputs.PrivateSubnet1AID"
-                  ],
-                  "Fn::GetAtt": [
-                    "VPCStack",
-                    "Outputs.PrivateSubnet2AID"
+              {
+                "Fn::Join": [
+                  ",",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "VPCStack",
+                        "Outputs.PrivateSubnet1AID"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "VPCStack",
+                        "Outputs.PrivateSubnet2AID"
+                      ]
+                    }
                   ]
                 ]
-              ],
-              "Fn::Join": [
-                ",",
-                [
-                  "Fn::GetAtt": [
-                    "VPCStack",
-                    "Outputs.PrivateSubnet1AID"
-                  ],
-                  "Fn::GetAtt": [
-                    "VPCStack",
-                    "Outputs.PrivateSubnet2AID"
-                  ],
-                  "Fn::GetAtt": [
-                    "VPCStack",
-                    "Outputs.PrivateSubnet3AID"
+              },
+              {
+                "Fn::Join": [
+                  ",",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "VPCStack",
+                        "Outputs.PrivateSubnet1AID"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "VPCStack",
+                        "Outputs.PrivateSubnet2AID"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "VPCStack",
+                        "Outputs.PrivateSubnet3AID"
+                      ]
+                    }
                   ]
                 ]
-              ]
+              }
             ]
           },
           "AvailabilityZones": {
