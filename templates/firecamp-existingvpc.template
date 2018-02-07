@@ -132,7 +132,7 @@
       "Type": "String",
       "Default": "0.9.3",
       "AllowedValues": [ "0.9.3", "0.9.2" ],
-      "Description": "The FireCamp release version"
+      "Description": "The FireCamp release version. For the detail release notes, please refer to https://github.com/cloudstax/firecamp/releases."
     },
     "QSS3BucketName": {
       "AllowedPattern": "^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$",
