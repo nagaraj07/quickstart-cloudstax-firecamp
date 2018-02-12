@@ -34,12 +34,19 @@
             "ContainerPlatform",
             "ClusterName",
             "Release",
-            "QSS3BucketName",
-            "QSS3KeyPrefix",
             "NumberOfManagers",
             "NumberOfNodes",
             "NodeAMIOS",
             "NodeInstanceType"
+          ]
+        },
+        {
+          "Label": {
+            "default": "AWS Quick Start Configuration"
+          },
+          "Parameters": [
+            "QSS3BucketName",
+            "QSS3KeyPrefix"
           ]
         }
       ],
@@ -63,7 +70,7 @@
           "default": "Private Subnet 3 ID"
         },
         "BastionSecurityGroupID": {
-          "default": "Bastion SecurityGroup ID"
+          "default": "Bastion Security Group ID"
         },
 
         "KeyPairName": {
@@ -92,7 +99,7 @@
           "default": "Number of Container Worker Nodes"
         },
         "NodeAMIOS": {
-          "default": "Node AMIOS"
+          "default": "Node AMI Type"
         },
         "NodeInstanceType": {
           "default": "Node Instance Type"
@@ -186,7 +193,7 @@
     },
     "NumberOfNodes":{
       "Type":"Number",
-      "Default":"1",
+      "Default":"3",
       "Description":"Number of instances to launch. Make sure it's greater or equal to the number of Availability Zones. For Swarm, this is the number of worker nodes."
     },
     "NodeAMIOS": {
