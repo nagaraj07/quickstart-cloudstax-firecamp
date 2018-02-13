@@ -1,12 +1,25 @@
-# CloudStax FireCamp on the AWS Cloud
+# quickstart-cloudstax-firecamp
+## CloudStax FireCamp on the AWS Cloud
 
-This Quick Start deploys CloudStax FireCamp into an AWS Cloud configuration of your choice.
+This Quick Start helps you deploy CloudStax FireCamp on the AWS Cloud.
 
-[FireCamp](https://github.com/cloudstax/firecamp/) is an open source platform to easily setup, manage and scale the stateful services. FireCamp Dockerizes the stateful services on AWS ECS (Elastic Container Service) and Docker Swarm. Kubernetes and Mesos will be supported in the future. FireCamp deeply integrates with the popular open source stateful services, such as Redis, Cassandra, MongoDB, Kafka, PostgreSQL, ElasticSearch, etc.
+Use FireCamp to create, manage, and scale stateful services, such as Redis, Cassandra, MongoDB, Kafka, PostgreSQL, or Elasticsearch, on AWS.  
 
-The customer could easily run any service with no management overhead on cloud. The node failure is handled automatically. When one node goes down, AWS Auto Scaling Group will start a new node. AWS ECS will automatically start the service container. FireCamp will attach the volume and update AWS Route53. There is no data copy involved during the failover.
+[FireCamp](https://github.com/cloudstax/firecamp/) is an open-source platform managing stateful services in containers. It supports your choice of two container orchestration services: Amazon Elastic Container Service (Amazon ECS) and Docker Swarm.
+FireCamp makes it easy to set up, manage, and scale stateful services on AWS, using three Availability Zones for high availability and automatic failover.   
 
 The AWS CloudFormation templates included with the Quick Start automate the following:
 
 - Deploying CloudStax FireCamp into a new VPC
 - Deploying CloudStax FireCamp into an existing VPC
+
+You can customize the templates to meet your specific requirements. For detailed information about the architecture and step-by-step instructions, see the deployment guide.
+
+![Quick Start architecture for CloudStax Firecamp on AWS](https://d1.awsstatic.com/partner-network/QuickStart/datasheets/cloudstax-firecamp-architecture-on-the-aws-cloud.png)
+
+For architectural details, best practices, step-by-step instructions, and customization options, see the 
+[deployment guide](https://s3.amazonaws.com/quickstart-reference/cloudstax/firecamp/latest/doc/cloudstax-firecamp-on-the-aws-cloud.pdf).
+
+To post feedback, submit feature ideas, or report bugs, use the **Issues** section of this GitHub repo.
+If you'd like to submit code for this Quick Start, please review the [AWS Quick Start Contributor's Kit](https://aws-quickstart.github.io/).
+
