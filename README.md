@@ -5,7 +5,7 @@ This Quick Start helps you deploy CloudStax FireCamp on the AWS Cloud.
 
 Use FireCamp to create, manage, and scale stateful services, such as Redis, Cassandra, MongoDB, Kafka, PostgreSQL, or Elasticsearch, on AWS.  
 
-[FireCamp](https://github.com/cloudstax/firecamp/) is an open-source platform managing stateful services in containers. It supports your choice of two container orchestration services: Amazon Elastic Container Service (Amazon ECS) and Docker Swarm.
+[FireCamp](https://github.com/cloudstax/firecamp/) is an open-source platform for managing stateful services in containers. It supports your choice of two container orchestration services: Amazon Elastic Container Service (Amazon ECS) and Docker Swarm.
 FireCamp makes it easy to set up, manage, and scale stateful services on AWS, using three Availability Zones for high availability and automatic failover.   
 
 The AWS CloudFormation templates included with the Quick Start automate the following:
