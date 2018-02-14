@@ -15,7 +15,7 @@ The AWS CloudFormation templates included with the Quick Start automate the foll
 
 You can customize the templates to meet your specific requirements. For detailed information about the architecture and step-by-step instructions, see the deployment guide.
 
-![Quick Start architecture for CloudStax Firecamp on AWS](https://d0.awsstatic.com/partner-network/QuickStart/datasheets/couchbase-architecture-on-aws.png)
+![Quick Start architecture for CloudStax Firecamp on AWS](https://d0.awsstatic.com/partner-network/QuickStart/datasheets/cloudstax-firecamp-architecture-on-the-aws-cloud.png)
 
 For architectural details, best practices, step-by-step instructions, and customization options, see the 
 [deployment guide](https://s3.amazonaws.com/quickstart-reference/cloudstax/firecamp/latest/doc/cloudstax-firecamp-on-the-aws-cloud.pdf).
