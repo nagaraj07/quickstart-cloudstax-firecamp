@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion":"2010-09-09",
-  "Description": "This template will deploy an ECS or Swarm cluster with the firecamp software in an existing VPC. License: Apache 2.0 (Please do not remove) Feb,06,2018 (qs-1o5bijc4p)",
+  "Description": "This template will deploy an ECS or Swarm cluster with the firecamp software in an existing VPC. License: Apache 2.0 (Please do not remove) Feb,14,2018 (qs-1o5bijc4p)",
   "Metadata": {
     "AWS::CloudFormation::Interface": {
       "ParameterGroups": [
