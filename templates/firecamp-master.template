@@ -312,7 +312,7 @@
     "NodeInstanceType":{
       "Description":"EC2 instance type",
       "Type":"String",
-      "Default":"m4.large",
+      "Default":"m4.xlarge",
       "AllowedValues":[
         "t2.micro",
         "t2.small",
@@ -678,6 +678,14 @@
             "IpProtocol": "tcp",
             "FromPort": "5044",
             "ToPort": "5044",
+            "SourceSecurityGroupId": {
+              "Ref": "AppAccessSecurityGroup"
+            }
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": "9000",
+            "ToPort": "9000",
             "SourceSecurityGroupId": {
               "Ref": "AppAccessSecurityGroup"
             }
