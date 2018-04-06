@@ -168,8 +168,8 @@
         },
         "Release": {
             "Type": "String",
-            "Default": "0.9.4",
-            "AllowedValues": [ "0.9.4", "0.9.3" ],
+            "Default": "0.9.5",
+            "AllowedValues": [ "0.9.5", "0.9.4" ],
             "Description": "The FireCamp release version. For the detail release notes, please refer to https://github.com/cloudstax/firecamp/releases."
         },
         "QSS3BucketName": {
@@ -378,6 +378,14 @@
                         "IpProtocol": "tcp",
                         "FromPort": "9092",
                         "ToPort": "9092",
+                        "SourceSecurityGroupId": {
+                            "Ref": "AppAccessSecurityGroup"
+                        }
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "8083",
+                        "ToPort": "8083",
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
