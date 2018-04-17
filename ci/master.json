@@ -1,11 +1,11 @@
 [
   {
     "ParameterKey": "ClusterName",
-    "ParameterValue": "alfred-develop-$[alfred_genuuid]"
+    "ParameterValue": "firecamp-$[taskcat_random-string]"
   },
   {
     "ParameterKey": "AvailabilityZones",
-    "ParameterValue": "$[alfred_genaz_3]"
+    "ParameterValue": "$[taskcat_genaz_3]"
   },
   {
     "ParameterKey": "NumberOfAZs",
@@ -26,5 +26,9 @@
   {
     "ParameterKey": "NodeInstanceType",
     "ParameterValue": "t2.micro"
+  },
+  {
+     "ParameterKey": "QSS3BucketName",
+     "ParameterValue": "$[taskcat_autobucket]"
   }
 ]
