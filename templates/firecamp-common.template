@@ -55,7 +55,7 @@
         },
         "SubnetIDs": {
             "Type": "List<AWS::EC2::Subnet::Id>",
-            "Description": "Subnet-ID the existing subnet in your VPC where you want to deploy node(s).",
+            "Description": "Subnet-ID the existing subnet in your VPC where you want to deploy node(s)."
         },
         "NumberOfManagers":{
             "Type":"Number",
