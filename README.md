@@ -18,7 +18,7 @@ You can customize the templates to meet your specific requirements. For detailed
 ![Quick Start architecture for CloudStax Firecamp on AWS](https://d0.awsstatic.com/partner-network/QuickStart/datasheets/cloudstax-firecamp-architecture-on-the-aws-cloud.png)
 
 For architectural details, best practices, step-by-step instructions, and customization options, see the 
-[deployment guide](https://s3.amazonaws.com/quickstart-reference/cloudstax/firecamp/latest/doc/cloudstax-firecamp-on-the-aws-cloud.pdf).
+[deployment guide](https://fwd.aws/eakMq).
 
 To post feedback, submit feature ideas, or report bugs, use the **Issues** section of this GitHub repo.
 If you'd like to submit code for this Quick Start, please review the [AWS Quick Start Contributor's Kit](https://aws-quickstart.github.io/).
