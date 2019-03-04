@@ -64,6 +64,10 @@
             "Default": "",
             "Description": "ID of the instance IAM Profile"
         },
+        "NodeInstanceRoleName": {
+            "Type": "String",
+            "Description": "Name of the instance IAM role"
+        },
         "NodeAMIOS": {
             "Default": "Amazon-Linux-HVM",
             "Description": "The Linux distribution for the AMI to be used for the service instances",
@@ -174,7 +178,7 @@
                                 ]
                             ]
                         },
-                        "PropagateAtLaunch": "true"
+                        "PropagateAtLaunch": true
                     },
                     {
                         "Key": {
@@ -191,23 +195,100 @@
                         "Value": {
                             "Ref": "ClusterName"
                         },
-                        "PropagateAtLaunch": "true"
+                        "PropagateAtLaunch": true
                     }
                 ]
             },
             "CreationPolicy": {
                 "ResourceSignal": {
+                    "Count": {
+                        "Ref": "NumberOfNodes"
+                    },
                     "Timeout": "PT10M"
                 }
             },
             "UpdatePolicy": {
                 "AutoScalingReplacingUpdate": {
-                    "WillReplace": "true"
+                    "WillReplace": true
                 }
             }
         },
         "ContainerInstances": {
             "Type": "AWS::AutoScaling::LaunchConfiguration",
+            "Metadata": {
+                "AWS::CloudFormation::Authentication": {
+                    "S3AccessCreds": {
+                        "buckets": [
+                            {
+                                "Ref": "QSS3BucketName"
+                            }
+                        ],
+                        "roleName": {
+                            "Ref": "NodeInstanceRoleName"
+                        },
+                        "type": "S3"
+                    }
+                },
+                "AWS::CloudFormation::Init": {
+                    "config": {
+                        "files": {
+                            "/tmp/init.sh": {
+                                "group": "root",
+                                "mode": "0755",
+                                "owner": "root",
+                                "source": {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "https://",
+                                            {
+                                                "Ref": "QSS3BucketName"
+                                            },
+                                            ".s3.amazonaws.com/",
+                                            {
+                                                "Ref": "QSS3KeyPrefix"
+                                            },
+                                            "scripts/init.sh"
+                                        ]
+                                    ]
+                                }
+                            }
+                        },
+                        "commands": {
+                            "b-bootstrap": {
+                                "command": {
+                                    "Fn::Join": [
+                                        " ",
+                                        [
+                                            "/tmp/init.sh",
+                                            {
+                                                "Ref": "Release"
+                                            },
+                                            {
+                                                "Ref": "ClusterName"
+                                            },
+                                            {
+                                                "Ref": "ContainerPlatform"
+                                            },
+                                            {
+                                                "Ref": "ContainerPlatformRole"
+                                            },
+                                            {
+                                                "Fn::Join": [
+                                                    ",",
+                                                    {
+                                                        "Ref": "AvailabilityZones"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "Properties": {
                 "ImageId": {
                     "Fn::FindInMap": [
@@ -250,59 +331,19 @@
                             [
                                 "#!/bin/bash -x\n",
                                 "yum install -y aws-cfn-bootstrap\n",
-                                "version=",
+                                "/opt/aws/bin/cfn-init ",
+                                "         --stack ",
                                 {
-                                    "Ref": "Release"
+                                    "Ref": "AWS::StackName"
+                                },
+                                "         --resource ContainerInstances",
+                                "         --region ",
+                                {
+                                    "Ref": "AWS::Region"
                                 },
                                 "\n",
-                                "# get and run the node init script\n",
-                                "for i in 1 2 3\n",
-                                "do\n",
-                                "  wget -O /tmp/init.sh https://s3.amazonaws.com/",
-                                {
-                                    "Ref": "QSS3BucketName"
-                                },
-                                "/",
-                                {
-                                    "Ref": "QSS3KeyPrefix"
-                                },
-                                "scripts/init.sh\n",
-                                "  if [ \"$?\" = \"0\" ]; then\n",
-                                "    break\n",
-                                "  elif [ \"$i\" = \"3\" ]; then\n",
-                                "    echo \"failed to get init.sh\"\n",
-                                "    exit 2\n",
-                                "  else\n",
-                                "    sleep 4\n",
-                                "  fi\n",
-                                "done\n",
-                                "chmod +x /tmp/init.sh\n",
-                                "/tmp/init.sh $version ",
-                                {
-                                    "Ref": "ClusterName"
-                                },
-                                " ",
-                                {
-                                    "Ref": "ContainerPlatform"
-                                },
-                                " ",
-                                {
-                                    "Ref": "ContainerPlatformRole"
-                                },
-                                " ",
-                                {
-                                    "Fn::Join": [
-                                        ",",
-                                        {
-                                            "Ref": "AvailabilityZones"
-                                        }
-                                    ]
-                                },
-                                "\n",
-                                "res=$?\n",
-                                "echo $res\n",
                                 "# Signal init result\n",
-                                "/opt/aws/bin/cfn-signal -e $res ",
+                                "/opt/aws/bin/cfn-signal -e $? ",
                                 "         --stack ",
                                 {
                                     "Ref": "AWS::StackName"

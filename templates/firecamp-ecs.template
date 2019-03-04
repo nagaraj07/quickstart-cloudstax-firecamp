@@ -48,6 +48,10 @@
             "Default": "",
             "Description": "ID of the instance IAM Profile"
         },
+        "NodeInstanceRoleName": {
+            "Type": "String",
+            "Description": "Name of the instance IAM role"
+        },
         "QSS3BucketName": {
             "AllowedPattern": "^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$",
             "ConstraintDescription": "Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).",
@@ -114,7 +118,7 @@
                         ]
                     ]
                 },
-                "RetentionInDays": "120"
+                "RetentionInDays": 120
             }
         },
         "ManageServerTaskdefinition":{
@@ -144,8 +148,8 @@
                                 ]
                             ]
                         },
-                        "Cpu":"128",
-                        "Essential":"true",
+                        "Cpu": 128,
+                        "Essential": true,
                         "Image": {
                             "Fn::Join": [
                                 ":",
@@ -157,12 +161,12 @@
                                 ]
                             ]
                         },
-                        "Memory":"2048",
-                        "MemoryReservation":"128",
+                        "Memory":2048,
+                        "MemoryReservation":128,
                         "PortMappings":[
                             {
-                                "ContainerPort": "27040",
-                                "HostPort": "27040",
+                                "ContainerPort": 27040,
+                                "HostPort": 27040,
                                 "Protocol": "tcp"
                             }
                         ],
@@ -218,7 +222,7 @@
                 "Cluster":{
                     "Ref": "ClusterName"
                 },
-                "DesiredCount":"1",
+                "DesiredCount":1,
                 "ServiceName": "firecamp-manageserver",
                 "TaskDefinition":{
                     "Ref": "ManageServerTaskdefinition"
@@ -239,7 +243,7 @@
                         ]
                     ]
                 },
-                "RetentionInDays": "120"
+                "RetentionInDays": 120
             }
         },
         "CatalogServiceTaskdefinition":{
@@ -269,8 +273,8 @@
                                 ]
                             ]
                         },
-                        "Cpu":"128",
-                        "Essential":"true",
+                        "Cpu":128,
+                        "Essential":true,
                         "Image": {
                             "Fn::Join": [
                                 ":",
@@ -282,12 +286,12 @@
                                 ]
                             ]
                         },
-                        "Memory":"2048",
-                        "MemoryReservation":"128",
+                        "Memory":2048,
+                        "MemoryReservation":128,
                         "PortMappings":[
                             {
-                                "ContainerPort": "27041",
-                                "HostPort": "27041",
+                                "ContainerPort": 27041,
+                                "HostPort": 27041,
                                 "Protocol": "tcp"
                             }
                         ],
@@ -337,7 +341,7 @@
                 "Cluster":{
                     "Ref": "ClusterName"
                 },
-                "DesiredCount":"1",
+                "DesiredCount":1,
                 "ServiceName": "firecamp-catalogservice",
                 "TaskDefinition":{
                     "Ref": "CatalogServiceTaskdefinition"
@@ -400,6 +404,9 @@
                     },
                     "NodeInstanceProfileID": {
                         "Ref": "NodeInstanceProfileID"
+                    },
+                    "NodeInstanceRoleName": {
+                        "Ref": "NodeInstanceRoleName"
                     },
                     "NodeAMIOS": {
                         "Ref": "NodeAMIOS"

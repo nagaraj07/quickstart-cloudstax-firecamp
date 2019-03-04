@@ -441,7 +441,6 @@
             }
         },
         "BastionStack": {
-            "DependsOn": "VPCStack",
             "Type": "AWS::CloudFormation::Stack",
             "Properties": {
                 "TemplateURL": {
@@ -528,8 +527,8 @@
                 "SecurityGroupIngress": [
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "22",
-                        "ToPort": "22",
+                        "FromPort": 22,
+                        "ToPort": 22,
                         "SourceSecurityGroupId": {
                             "Fn::GetAtt": [
                                 "BastionStack",
@@ -539,8 +538,8 @@
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "27040",
-                        "ToPort": "27040",
+                        "FromPort": 27040,
+                        "ToPort": 27040,
                         "SourceSecurityGroupId": {
                             "Fn::GetAtt": [
                                 "BastionStack",
@@ -550,160 +549,160 @@
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "27017",
-                        "ToPort": "27017",
+                        "FromPort": 27017,
+                        "ToPort": 27017,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "27018",
-                        "ToPort": "27018",
+                        "FromPort": 27018,
+                        "ToPort": 27018,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "27019",
-                        "ToPort": "27019",
+                        "FromPort": 27019,
+                        "ToPort": 27019,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "5432",
-                        "ToPort": "5432",
+                        "FromPort": 5432,
+                        "ToPort": 5432,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "9042",
-                        "ToPort": "9042",
+                        "FromPort": 9042,
+                        "ToPort": 9042,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "7199",
-                        "ToPort": "7199",
+                        "FromPort": 7199,
+                        "ToPort": 7199,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "9160",
-                        "ToPort": "9160",
+                        "FromPort": 9160,
+                        "ToPort": 9160,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "2181",
-                        "ToPort": "2181",
+                        "FromPort": 2181,
+                        "ToPort": 2181,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "9092",
-                        "ToPort": "9092",
+                        "FromPort": 9092,
+                        "ToPort": 9092,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "8083",
-                        "ToPort": "8083",
+                        "FromPort": 8083,
+                        "ToPort": 8083,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "6379",
-                        "ToPort": "6379",
+                        "FromPort": 6379,
+                        "ToPort": 6379,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "5984",
-                        "ToPort": "5984",
+                        "FromPort": 5984,
+                        "ToPort": 5984,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "6984",
-                        "ToPort": "6984",
+                        "FromPort": 6984,
+                        "ToPort": 6984,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "8300",
-                        "ToPort": "8300",
+                        "FromPort": 8300,
+                        "ToPort": 8300,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "8301",
-                        "ToPort": "8301",
+                        "FromPort": 8301,
+                        "ToPort": 8301,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "9200",
-                        "ToPort": "9200",
+                        "FromPort": 9200,
+                        "ToPort": 9200,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "5601",
-                        "ToPort": "5601",
+                        "FromPort": 5601,
+                        "ToPort": 5601,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "9600",
-                        "ToPort": "9600",
+                        "FromPort": 9600,
+                        "ToPort": 9600,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "5044",
-                        "ToPort": "5044",
+                        "FromPort": 5044,
+                        "ToPort": 5044,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
                     },
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "9000",
-                        "ToPort": "9000",
+                        "FromPort": 9000,
+                        "ToPort": 9000,
                         "SourceSecurityGroupId": {
                             "Ref": "AppAccessSecurityGroup"
                         }
@@ -724,8 +723,8 @@
                 "SecurityGroupIngress": [
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "2000",
-                        "ToPort": "30000",
+                        "FromPort": 2000,
+                        "ToPort": 30000,
                         "SourceSecurityGroupId": {
                             "Ref": "ServiceSecurityGroup"
                         }

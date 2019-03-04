@@ -156,6 +156,12 @@
                 "Parameters": {
                     "ContainerPlatform": {
                         "Ref": "ContainerPlatform"
+                    },
+                    "QSS3BucketName": {
+                        "Ref": "QSS3BucketName"
+                    },
+                    "QSS3KeyPrefix": {
+                        "Ref": "QSS3KeyPrefix"
                     }
                 }
             }
@@ -245,6 +251,12 @@
                             "Outputs.NodeInstanceProfile"
                         ]
                     },
+                    "NodeInstanceRoleName": {
+                        "Fn::GetAtt": [
+                            "EC2InstanceProfileStack",
+                            "Outputs.NodeInstanceRoleName"
+                        ]
+                    },
                     "Release": {
                         "Ref": "Release"
                     },
@@ -325,6 +337,12 @@
                         "Fn::GetAtt": [
                             "EC2InstanceProfileStack",
                             "Outputs.NodeInstanceProfile"
+                        ]
+                    },
+                    "NodeInstanceRoleName": {
+                        "Fn::GetAtt": [
+                            "EC2InstanceProfileStack",
+                            "Outputs.NodeInstanceRoleName"
                         ]
                     },
                     "Release": {
